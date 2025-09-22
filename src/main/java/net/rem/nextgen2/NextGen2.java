@@ -74,7 +74,7 @@ public class NextGen2 {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event)
         {
-            
+
         }
     }
 }
