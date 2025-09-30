@@ -12,16 +12,12 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.rem.nextgen2.client.renderer.CrimsonAutomatonRenderer;
-import net.rem.nextgen2.entity.HoarderZombie;
-import net.rem.nextgen2.registry.ModEntityTypes;
-import net.rem.nextgen2.registry.ModItems;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import org.slf4j.Logger;
-import net.rem.nextgen2.client.renderer.CrimsonAutomatonRenderer;
+
 
 
 
@@ -39,8 +35,7 @@ public class NextGen2 {
     public NextGen2() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        ModItems.ITEMS.register(modEventBus);
-        ModEntityTypes.ENTITY_TYPES.register(modEventBus);
+
 
         // Register the item to a creative tab
         modEventBus.addListener(this::commonSetup);
@@ -59,13 +54,11 @@ public class NextGen2 {
     }
 
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
-        if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS) {
-            event.accept(ModItems.HOARDER_SPAWN_EGG);
-        }
+
     }
 
     private void registerEntityAttributes(EntityAttributeCreationEvent event) {
-        event.put(ModEntityTypes.HOARDER.get(), HoarderZombie.createAttributes().build());
+
 
 
     }
@@ -81,10 +74,6 @@ public class NextGen2 {
     @Mod.EventBusSubscriber(modid = NextGen2.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents {
 
-        public static void onClientSetup(FMLClientSetupEvent event) {
-            event.enqueueWork(() ->
-                    EntityRenderers.register(net.rem.nextgen2.entity.ModEntityTypes.CRIMSON_AUTOMATON.get(), CrimsonAutomatonRenderer::new));
 
-        }
     }
 }
